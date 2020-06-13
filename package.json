@@ -4,13 +4,15 @@
   "description": "JavaScript development environment Pluralsight course by Cory House",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel open:src lint:watch",
+    "start": "npm-run-all --parallel open:src lint:watch test:watch",
     "open:src": "babel-node buildScripts/srcServer.js",
     "security-check": "npm audit",
     "localtunnel": "lt -h http://serverless.social -p 3000 --subdomain philz",
     "share": "npm-run-all  --parallel open:src localtunnel",
     "lint": "esw webpack.config.* src buildSripts --color",
-    "lint:watch": "npm run lint -- --watch "
+    "lint:watch": "npm run lint -- --watch",
+    "test": "mocha --reporter progress buildScripts/testSetup.js \" src/**/*.test.js \"",
+    "test:watch": "npm test -- --watch"
   },
   "author": "Akuagwu Philemon",
   "license": "MIT",
